@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper">
-    <p>Main Wrapper</p>
+    
     <catalog/>
     <cart/>
   </div>
@@ -23,10 +23,6 @@ export default {
 
 <style>
 .main-wrapper{
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-width: 900px;
     margin: 0 auto;
 }

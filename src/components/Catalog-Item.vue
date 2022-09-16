@@ -1,16 +1,44 @@
 <template>
   <div class="catalog-item">
-    <p>Item 1</p>
-    <p>Price: 100</p>
-    <button>Add to cart</button>
+    <img :src=" require('../assets/img/' + product.image)" alt="img" class="img">
+    <p class="name">{{product.name}}</p>
+    <p class="price">{{product.price}} ₽</p>
+    <button class="btn" @click="addToCart">Add to cart</button>
   </div>
 </template>
 
 <script>
 export default {
-    
+    props: {
+      product: {
+        type: Object,
+        required: true
+      }
+    },
+    methods: {
+      addToCart() {
+        this.$emit('addToCart', this.product.article)
+      }
+    }
 };
 </script>
 
 <style>
+.catalog-item{
+  flex-basis: 25%;
+  box-shadow: 0 0 8px 0 #444;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  width: 200px;
+}
+
+
+
 </style>
