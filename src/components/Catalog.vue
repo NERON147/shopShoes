@@ -1,5 +1,9 @@
 <template>
   <div class="catalog">
+    <router-link :to="{name: 'cart', params: {cart_data: CART}}">
+      <div class="link_to_cart"> Cart: {{CART.length}}</div>
+    </router-link>
+    
     <h1 class="title">Catalog</h1>
     <div class="catalog-list">
     <catalogItem
@@ -27,16 +31,18 @@ export default {
 
   computed: {
     ...mapGetters([
-      'PRODUCTS'
+      'PRODUCTS',
+      'CART'
     ])
   },
 
   methods: {
     ...mapActions([
-      'GET_PRODUCTS_FROM_API'
+      'GET_PRODUCTS_FROM_API',
+      'ADD_TO_CART'
     ]),
     addToCart(data) {
-      console.log(data)
+      this.ADD_TO_CART(data)
     }
   },
   mounted() {
@@ -58,6 +64,15 @@ export default {
   align-items: center;
   margin-right: 40px;
   margin-left: 40px;
+}
+
+.link_to_cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 16px;
+  border: 1px solid rgb(163, 163, 163);
+  text-decoration: none;
 }
 
 

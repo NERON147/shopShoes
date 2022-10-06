@@ -1,21 +1,21 @@
 <template>
   <div class="main-wrapper">
-    
-    <catalog/>
-    <cart/>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 
 
 <script>
-import catalog from '@/components/Catalog.vue'
-import cart from '@/components/Cart.vue'
+
 
 export default {
-  components: {
-    catalog,
-    cart
+ 
+
+  computed: {
+    
   }
 
 }

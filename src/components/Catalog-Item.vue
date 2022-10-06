@@ -15,10 +15,13 @@ export default {
         required: true
       }
     },
+  mounted() {
+        this.$set(this.product, 'quantity', 1)
+    },
     methods: {
-      addToCart() {
-        this.$emit('addToCart', this.product.article)
-      }
+      addToCart () {
+        this.$emit('addToCart', this.product)
+      },
     }
 };
 </script>
@@ -39,6 +42,13 @@ export default {
   width: 200px;
 }
 
+.btn {
+  transition: all .2s ease;
+}
+
+.btn:active {
+  transform: scale(1.1);
+}
 
 
 </style>
