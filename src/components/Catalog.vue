@@ -28,7 +28,14 @@ export default {
        
     }
   },
+mounted() {
+    this.GET_PRODUCTS_FROM_API()
 
+  
+    
+    
+  },
+  
   computed: {
     ...mapGetters([
       'PRODUCTS',
@@ -43,11 +50,12 @@ export default {
     ]),
     addToCart(data) {
       this.ADD_TO_CART(data)
+
+      
     }
+
   },
-  mounted() {
-    this.GET_PRODUCTS_FROM_API()
-  }
+  
 }
 </script>
 

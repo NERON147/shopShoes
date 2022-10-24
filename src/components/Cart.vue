@@ -6,17 +6,17 @@
     <h1 class="cart">Cart</h1>
     <p class="noone" v-if="!cart_data.length">There are no products in cart...</p>
 <cartItem
-v-for="item in cart_data"
+v-for="(item, index) in cart_data"
 :key="item.article"
 :cart_item_data="item"
-@deleteFromCart="deleteFromCart(item)"
+@deleteFromCart="deleteFromCart(index)"
 @decrement="decrement(index)"
 @increment="increment(index)"
 />
 
 <div class="total">
     <p class="total_name">Total:</p>
-    <p>{{cartTotalCost}} ₽</p>
+    <p>{{cartTotalCost.toLocaleString()}} ₽</p>
 </div>
 
  </div>
@@ -95,7 +95,7 @@ export default {
 }
 
 .total {
-    position: fixed;
+    position: sticky;
     bottom: 0;
     right: 0;
     left: 0;
@@ -105,6 +105,11 @@ export default {
     background: linear-gradient(135deg, rgba(167,214,172,1) 0%, rgba(64,217,56,1) 100%);
     color: rgb(255, 255, 255);
     font-size: 20px;
+    border-radius: 50px;
+    width: 300px;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .total_name {

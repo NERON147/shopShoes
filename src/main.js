@@ -5,6 +5,12 @@ import store from './store/store'
 
 Vue.config.productionTip = false
 
+const cart = JSON.parse(localStorage.getItem('cart'))
+
+if(cart) {
+  store.dispatch('setCartFromLC', cart)
+}
+
 new Vue({
   router,
   store,

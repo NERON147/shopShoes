@@ -2,7 +2,7 @@ import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-//Работа с json server 'json-server --watch db.json' в терминале
+//Работа с json server 'json-server --watch db.json' в терминале или npx json-server --watch db.json --port 3000
 
 Vue.use(Vuex)
 
@@ -23,6 +23,7 @@ let store = new Vuex.Store({
             isProductExists = true;
             item.quantity++
           }
+
         })
         if (!isProductExists) {
           state.cart.push(product)
@@ -30,17 +31,28 @@ let store = new Vuex.Store({
       } else {
         state.cart.push(product)
       }
+      localStorage.setItem('cart', JSON.stringify(state.cart))
+      
     },
     REMOVE_FROM_CART: (state, index) => {
       state.cart.splice(index, 1)
+      localStorage.setItem('cart', JSON.stringify(state.cart))
+      
     },
     INCREMENT: (state, index) => {
       state.cart[index].quantity++
+      localStorage.setItem('cart', JSON.stringify(state.cart))
+
     },
     DECREMENT: (state, index) => {
       if(state.cart[index].quantity > 1) {
         state.cart[index].quantity--
+      localStorage.setItem('cart', JSON.stringify(state.cart))
+
       }
+    },
+    UPDATE_CART: (state, cart) => {
+      state.cart = cart
     }
    
 
@@ -70,6 +82,9 @@ let store = new Vuex.Store({
     },
     DECREMENT_CART_ITEM({commit}, index) {
       commit('DECREMENT', index)
+    },
+    setCartFromLC({commit}, cart) {
+      commit('UPDATE_CART', cart)
     }
   },
   getters: {
@@ -77,8 +92,8 @@ let store = new Vuex.Store({
       return state.products
     },
     CART(state) {
-      return state.cart;
-    } 
+      return state.cart
+    }
   }
   
 })
